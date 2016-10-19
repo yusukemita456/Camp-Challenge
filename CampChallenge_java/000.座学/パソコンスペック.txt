@@ -1,0 +1,4 @@
+os windows10pro
+プロセッサ　intel(R)Core(TM)i5-4300U CPU @1.90GHz 2.50GHz
+実装RAM 8.00GB
+システムの種類　64ビット　オペレーティングシステム、x64 ベース　プロセッサ
