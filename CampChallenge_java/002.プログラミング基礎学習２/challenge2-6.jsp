@@ -16,7 +16,7 @@
         
         <%
             int i = 1000; 
-            while(100 < i){
+            while(100 <= i){
             i = i / 2;
             out.print(i + "      ");
         }
