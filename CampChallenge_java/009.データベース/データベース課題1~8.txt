@@ -1,0 +1,40 @@
+CREATE USER 'yusuke34'@localhost IDENTIFIED BY 'password';
+GRANT ALL ON challenge‚PQ‚P.* TO 'yusuke34'@'localhost';
+
+
+‰Û‘è‚P
+create table profiles(profilesID int,name varchar(255),tell varchar(255),age int ,birthday date);
+
+INSERT INTO profiles
+(profilesID ,name ,tell,age,birthday) 
+VALUES (1,'“c’† ŽÀ','012-345-6789',30,'1994-02-01'),(2,'—é–Ø –Î','090-1122-3344',37,'1987-08-12'),
+(3,'—é–Ø ŽÀ','080-5566-7788',24,'2000-12-24'),(4,'²“¡ ´','012-0987-6543',19,'2005-08-01'),
+(5,'‚‹´ ´','090-9900-1234',24,'2000-12-24');
+
+select * from profiles;
+
+‰Û‘è‚Q
+select * from profiles where profilesID = 3;
+
+‰Û‘è3
+select * from profiles where name = '‚‹´ŽÀ';
+
+‰Û‘è‚S
+select * from profiles where age = 24;
+
+‰Û‘è5
+select * from profiles where age >= 25;
+
+‰Û‘è‚U
+select * from profiles where name like '%ŽÀ%'
+
+‰Û‘è7
+UPDATE profiles set name = '‹g“c –Î'
+where profilesID = 2
+
+select * from profiles;
+
+‰Û‘è‚W
+delete from profiles 
+where birthday = '2000-12-24'
+
