@@ -40,16 +40,22 @@ public class db00 extends HttpServlet {
         Connection conn = null;
         PreparedStatement db_st = null;
         ResultSet db_data = null;
+        
+        //課題2:前回の課題1で作成したテーブルに自由なメンバー情報を格納する処理を構築してください
+        //課題3:前回の課題1で作成したテーブルからSELECT*により全件取得し、画面に取得した全情報を表示してください
 
         try {
             Class.forName("com.mysql.jdbc.Driver").newInstance();
             out.print("ドライバのロードに成功しました");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/challenge1_1", "yusuke34", "password");
             out.print("データベースの接続に成功しました");
-            //select文
+            
+
+            //insert 文
+            
             String sql = "insert into profiles (profilesID,name,tell,age,birthday )values (?, ? , ? , ? , ?)";
             
-            db_st = conn.prepareStatement(sql);
+            db_st = conn.prepareStatement(sql); ///arrayListでの代入も行ったが時間が掛かりすぎたため断念。後日挑戦。
             db_st.setInt(1,55);
             db_st.setString(2,"斎藤さん");
             db_st.setInt(3,1234567543);
@@ -59,7 +65,7 @@ public class db00 extends HttpServlet {
             db_st.executeUpdate();
             
             
-            
+          //select 文  
           db_st = conn.prepareStatement("select * from profiles ");
             
 
