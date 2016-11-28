@@ -59,7 +59,9 @@ public final class insert_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <body>\n");
       out.write("    <form action=\"insertconfirm\" method=\"POST\">\n");
       out.write("        名前:\n");
-      out.write("        <input type=\"text\" name=\"name\" value=\"\">\n");
+      out.write("        <input type=\"text\" name=\"name\" value=\"");
+      out.print( hs.getAttribute("name"));
+      out.write("\">\n");
       out.write("        <br><br>\n");
       out.write("\n");
       out.write("        生年月日:　\n");
@@ -125,7 +127,9 @@ public final class insert_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("        自己紹介文\n");
       out.write("        <br>\n");
-      out.write("        <textarea name=\"comment\" rows=10 cols=50 style=\"resize:none\" wrap=\"hard\"></textarea><br><br>\n");
+      out.write("        <textarea name=\"comment\" rows=10 cols=50 style=\"resize:none\" wrap=\"hard\">");
+      out.print( hs.getAttribute("comment"));
+      out.write("</textarea><br><br>\n");
       out.write("        \n");
       out.write("        <input type=\"hidden\" name=\"ac\"  value=\"");
       out.print( hs.getAttribute("ac"));
@@ -135,7 +139,7 @@ public final class insert_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <br>\n");
       out.write("        ");
       out.print(JumsHelper.getInstance().home());
-      out.write("\n");
+      out.write("　<!-- 課題１　トップへのリンク -->\n");
       out.write("    </body>\n");
       out.write("</html>\n");
     } catch (Throwable t) {

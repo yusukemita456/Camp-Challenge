@@ -28,6 +28,7 @@ public class InsertConfirm extends HttpServlet {
             throws ServletException, IOException {
         try{
             HttpSession session = request.getSession();
+           
             request.setCharacterEncoding("UTF-8");//セッションに格納する文字コードをUTF-8に変更
             String accesschk = request.getParameter("ac");//アクセスチェック
             if(accesschk ==null || (Integer)session.getAttribute("ac")!=Integer.parseInt(accesschk)){
@@ -35,18 +36,28 @@ public class InsertConfirm extends HttpServlet {
             }
             
             //フォームからの入力を取得
-            String name = request.getParameter("name");
-            String year = request.getParameter("year");
-            String month = request.getParameter("month");
-            String day = request.getParameter("day");
-            String type = request.getParameter("type");
-            String tell = request.getParameter("tell");
-            String comment = request.getParameter("comment");
+            String name = "";
+            String year = "";
+            String month = "";
+            String day = "";
+            String type = "";
+            String tell = "";
+            String comment = "";
             
             
             
+            name = request.getParameter("name");
+            year = request.getParameter("year");
+            month = request.getParameter("month");
+            day = request.getParameter("day");
+            type = request.getParameter("type");
+            tell = request.getParameter("tell");
+            comment = request.getParameter("comment");
             
-
+            
+            UserDataBeans udb = new UserDataBeans(name,year,month,day,type,tell,comment);
+            
+            
             //セッションに格納
             session.setAttribute("name", name);
             session.setAttribute("year", year);
