@@ -11,7 +11,9 @@
         <title>JUMS登録確認画面</title>
     </head>
     <body>
-    <% if(!hs.getAttribute("name").equals("")){ %>//nameが取れたら処理続行
+    <% if(!hs.getAttribute("name").equals("")&&!hs.getAttribute("year").equals("")&&!hs.getAttribute("type").equals("")&&!hs.getAttribute("tell").equals("")&&!hs.getAttribute("comment").equals("")){ %>
+    <!--//課題4 情報が取れたら処理続行↑↑↑↑↑　名前以外が不完全で、生年月日、種別、電話番号、自己紹介を追加しました。-->
+    
         <h1>登録確認</h1>
         名前:<%= hs.getAttribute("name")%><br>
         生年月日:<%= hs.getAttribute("year")+"年"+hs.getAttribute("month")+"月"+hs.getAttribute("day")+"日"%><br>

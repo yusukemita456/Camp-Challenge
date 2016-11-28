@@ -42,6 +42,10 @@ public class InsertConfirm extends HttpServlet {
             String type = request.getParameter("type");
             String tell = request.getParameter("tell");
             String comment = request.getParameter("comment");
+            
+            
+            
+            
 
             //セッションに格納
             session.setAttribute("name", name);
