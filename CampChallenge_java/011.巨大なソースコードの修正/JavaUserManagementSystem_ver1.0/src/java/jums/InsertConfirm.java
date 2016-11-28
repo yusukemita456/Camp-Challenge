@@ -29,7 +29,7 @@ public class InsertConfirm extends HttpServlet {
         try{
             HttpSession session = request.getSession();
             request.setCharacterEncoding("UTF-8");//セッションに格納する文字コードをUTF-8に変更
-            String accesschk = request.getParameter("ac");
+            String accesschk = request.getParameter("ac");//アクセスチェック
             if(accesschk ==null || (Integer)session.getAttribute("ac")!=Integer.parseInt(accesschk)){
                 throw new Exception("不正なアクセスです");
             }
@@ -53,6 +53,7 @@ public class InsertConfirm extends HttpServlet {
             session.setAttribute("comment", comment);
             System.out.println("Session updated!!");
             
+             session.setAttribute("ac", (int) (Math.random() * 1000));//課題２ アクセスチェックのためのセッション
             request.getRequestDispatcher("/insertconfirm.jsp").forward(request, response);
         }catch(Exception e){
             request.setAttribute("error", e.getMessage());
