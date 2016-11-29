@@ -30,8 +30,8 @@ public class UserDataDAO {
         PreparedStatement st = null;
         try{
             
-            Class.forName("com.my.sql.jdbc.Driver");
-            con =  DriverManager.getConnection("jdbc:mysql://localhost:3306/challenge_db", "root", "");
+           
+            con = DBManager.getConnection();
             st = con.prepareStatement("INSERT INTO user_t(name,birthday,tell,type,comment,newDate) VALUES(?,?,?,?,?,?)");
             st.setString(1, ud.getName());
             st.setDate(2,new java.sql.Date(ud.getBirthday().getTime()));//指定のタイムスタンプ値からSQL格納用のDATE型に変更//new java.sql.Date(System.currentTimeMillis(ud.getBirthday()))
