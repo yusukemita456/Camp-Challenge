@@ -3,6 +3,8 @@ package org.apache.jsp;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import javax.servlet.jsp.*;
+import jums.UserDataBeans;
+import jums.InsertConfirm;
 import javax.servlet.http.HttpSession;
 import jums.JumsHelper;
 
@@ -43,14 +45,30 @@ public final class insert_jsp extends org.apache.jasper.runtime.HttpJspBase
       _jspx_out = out;
       _jspx_resourceInjector = (org.glassfish.jsp.api.ResourceInjector) application.getAttribute("com.sun.appserv.jsp.resource.injector");
 
-      out.write('\n');
-      out.write('\n');
-
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+      out.write("\n");
+  
     HttpSession hs = request.getSession();
+    UserDataBeans user = new UserDataBeans();
+   if(session.getAttribute("user") != null){
+       
+      user = (UserDataBeans) session.getAttribute("user");
+       
+       
+   }
+    
+  // session.setAttribute("user", udb);
 
+      out.write("\n");
+      out.write("    \n");
       out.write("\n");
       out.write("\n");
       out.write("<!DOCTYPE html>\n");
+      out.write("\n");
+      out.write("\n");
       out.write("<html>\n");
       out.write("    <head>\n");
       out.write("        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">\n");
@@ -60,13 +78,17 @@ public final class insert_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("    <form action=\"insertconfirm\" method=\"POST\">\n");
       out.write("        名前:\n");
       out.write("        <input type=\"text\" name=\"name\" value=\"");
-      out.print( hs.getAttribute("name"));
+      out.print( user.getName());
       out.write("\">\n");
       out.write("        <br><br>\n");
       out.write("\n");
       out.write("        生年月日:　\n");
       out.write("        <select name=\"year\">\n");
-      out.write("            <option value=\"\">----</option>\n");
+      out.write("            <option value=\"");
+      out.print( user.getYear());
+      out.write(" select\">");
+      out.print( user.getYear());
+      out.write("</option>\n");
       out.write("            ");
 
             for(int i=1950; i<=2010; i++){ 
@@ -81,7 +103,11 @@ public final class insert_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("        </select>年\n");
       out.write("        <select name=\"month\">\n");
-      out.write("            <option value=\"\">--</option>\n");
+      out.write("            <option value=\"");
+      out.print( user.getMonth());
+      out.write("select\">");
+      out.print( user.getMonth());
+      out.write("</option>\n");
       out.write("            ");
 
             for(int i = 1; i<=12; i++){ 
@@ -97,7 +123,11 @@ public final class insert_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("\n");
       out.write("        </select>月\n");
       out.write("        <select name=\"day\">\n");
-      out.write("            <option value=\"\">--</option>\n");
+      out.write("            <option value=\"");
+      out.print( user.getDay());
+      out.write("select\">");
+      out.print( user.getDay());
+      out.write("</option>\n");
       out.write("            ");
 
             for(int i = 1; i<=31; i++){ 
@@ -115,24 +145,26 @@ public final class insert_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("        <br><br>\n");
       out.write("\n");
       out.write("        種別:\n");
-      out.write("        <br>\n");
-      out.write("        <input type=\"radio\" name=\"type\" value=\"1\"　checked>エンジニア<br>\n");
-      out.write("        <input type=\"radio\" name=\"type\" value=\"2\">営業<br>\n");
-      out.write("        <input type=\"radio\" name=\"type\" value=\"3\">その他<br>\n");
+      out.write("        <br> \n");
+      out.write("        <input type=\"radio\" name=\"type\" value=\"1\" >エンジニア<br>\n");
+      out.write("        <input type=\"radio\" name=\"type\" value=\"2\" >営業<br>\n");
+      out.write("        <input type=\"radio\" name=\"type\" value=\"3\" >その他<br>\n");
       out.write("        <br>\n");
       out.write("\n");
       out.write("        電話番号:\n");
-      out.write("        <input type=\"text\" name=\"tell\" value=\"\">\n");
+      out.write("        <input type=\"text\" name=\"tell\" value=\"");
+user.getTell();
+      out.write("\">\n");
       out.write("        <br><br>\n");
       out.write("\n");
       out.write("        自己紹介文\n");
       out.write("        <br>\n");
       out.write("        <textarea name=\"comment\" rows=10 cols=50 style=\"resize:none\" wrap=\"hard\">");
-      out.print( hs.getAttribute("comment"));
+user.getComment();
       out.write("</textarea><br><br>\n");
       out.write("        \n");
       out.write("        <input type=\"hidden\" name=\"ac\"  value=\"");
-      out.print( hs.getAttribute("ac"));
+      out.print( session.getAttribute("ac"));
       out.write("\">\n");
       out.write("        <input type=\"submit\" name=\"btnSubmit\" value=\"確認画面へ\">\n");
       out.write("    </form>\n");

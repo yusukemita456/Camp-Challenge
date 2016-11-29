@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import jums.UserDataBeans;
+
 
 /**
  * insertconfirm.jspと対応するサーブレット
@@ -55,20 +57,34 @@ public class InsertConfirm extends HttpServlet {
             comment = request.getParameter("comment");
             
             
-            UserDataBeans udb = new UserDataBeans(name,year,month,day,type,tell,comment);
+            UserDataBeans udb = new UserDataBeans();
+            
+            udb.setName(name);
+            udb.setYear(year);
+            udb.setMonth(month);
+            udb.setDay(day);
+            udb.setType(type);
+            udb.setTell(tell);
+            udb.setComment(comment);
             
             
             //セッションに格納
-            session.setAttribute("name", name);
-            session.setAttribute("year", year);
-            session.setAttribute("month",month);
-            session.setAttribute("day", day);
-            session.setAttribute("type", type);
-            session.setAttribute("tell", tell);
-            session.setAttribute("comment", comment);
+//            session.setAttribute("name", name);
+//            session.setAttribute("year", year);
+//            session.setAttribute("month",month);
+//            session.setAttribute("day", day);
+//            session.setAttribute("type", type);
+//            session.setAttribute("tell", tell);
+//            session.setAttribute("comment", comment);
+            session.setAttribute("user", udb);
+            session.setMaxInactiveInterval(180); //課題7適切なタイミングでセッションがクリアになるようにしなさい。
+                                                 //ログアウトなどの明確なものがなかったためタイマー式で切れるようにしました。
+            
             System.out.println("Session updated!!");
             
-             session.setAttribute("ac", (int) (Math.random() * 1000));//課題２ アクセスチェックのためのセッション
+            
+            
+             
             request.getRequestDispatcher("/insertconfirm.jsp").forward(request, response);
         }catch(Exception e){
             request.setAttribute("error", e.getMessage());

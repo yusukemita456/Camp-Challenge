@@ -17,7 +17,8 @@ public class UserDataDTO {
     private int type;
     private String comment;
     private Timestamp newDate;
-    
+  
+ 
     
     public int getUserID() {
         return userID;
@@ -36,8 +37,10 @@ public class UserDataDTO {
     public Date getBirthday(){
         return birthday;
     }
+    
     public void setBirthday(Date birthday){
         this.birthday = birthday;
+       
     }
     
     public String getTell(){
@@ -67,5 +70,10 @@ public class UserDataDTO {
     public void setNewDate(Timestamp newDate) {
         this.newDate = newDate;
     }
+    
+    
+     
+
+    
 
 }
