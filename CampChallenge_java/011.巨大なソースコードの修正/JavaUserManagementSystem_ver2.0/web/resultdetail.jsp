@@ -14,6 +14,7 @@
         <link href="css/newcss.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
+        <a href="index.jsp">TOP</a> > <a href="Search">JUMSユーザー情報検索画面</a>  > <a href="sarchresult.jsp">JUMS検索結果画面</a>  > <a>詳細情報</a><br>
         <h1>詳細情報</h1>
         名前:<%= udd.getName()%><br>
         生年月日:<%= udd.getBirthday()%><br>
@@ -36,5 +37,7 @@
         <form action="Delete" method="POST">
         <input type="submit" name="delete" value="削除" style="width:100px">
         </form>
+        
+        
     </body>
 </html>

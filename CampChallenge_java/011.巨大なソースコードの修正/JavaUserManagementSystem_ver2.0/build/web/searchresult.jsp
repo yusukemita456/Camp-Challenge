@@ -16,6 +16,7 @@
         <link href="css/newcss.css" rel="stylesheet" type="text/css" />
     </head>
     <body>
+        <a href="index.jsp">TOP</a> > <a href="Search">JUMSユーザー情報検索画面</a>  > <a>JUMS検索結果画面</a><br>
         <h1>検索結果</h1>
         <table border=1>
             <tr>
