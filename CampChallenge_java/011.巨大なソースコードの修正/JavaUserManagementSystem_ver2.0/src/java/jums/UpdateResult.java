@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+
 /**
  *
  * @author hayashi-s
@@ -38,37 +39,38 @@ public class UpdateResult extends HttpServlet {
                 throw new Exception("不正なアクセスです");
             }
             
-            //恐らくinsertとsarchの考え方を組み合わせてロジックを作成するのだと思われる。
-            //idをセッションに入れて、ここで取出し、更新にしようする
-//            //フォームからの入力を取得して、JavaBeansに格納
-//            UserDataBeans udb = new UserDataBeans();
-//            udb.setName(request.getParameter("name"));
-//            udb.setYear(request.getParameter("year"));
-//            udb.setMonth(request.getParameter("month"));
-//            udb.setDay(request.getParameter("day"));
-//            udb.setType(request.getParameter("type"));
-//            udb.setTell(request.getParameter("tell"));
-//            udb.setComment(request.getParameter("comment"));
-//            
-//            //ユーザー情報群をセッションに格納
-//            session.setAttribute("udb", udb);
-//            System.out.println("Session updated!!");
-//            UserDataDTO udd = (UserDataDTO)session.getAttribute("id");
-//            
-//            //DTOオブジェクトにマッピング。DB専用のパラメータに変換
-//            UserDataDTO newuserdata = new UserDataDTO();
-//            udb.UD2DTOMapping(newuserdata);
-//            
-//            //DBへデータの挿入
-//            UserDataDAO .getInstance().update(newuserdata,udd.getUserID());
-//            
-//            //成功したのでセッションの値を削除
-//            session.invalidate();
-//            
-//            //結果画面での表示用に入力パラメータ―をリクエストパラメータとして保持
-//            request.setAttribute("udb", udb);
-//            
-//            request.getRequestDispatcher("/updateresult.jsp").forward(request, response);
+            
+            //フォームからの入力を取得して、JavaBeansに格納
+            UserDataBeans udb = new UserDataBeans();
+            udb.setName(request.getParameter("name"));
+            udb.setYear(request.getParameter("year"));
+            udb.setMonth(request.getParameter("month"));
+            udb.setDay(request.getParameter("day"));
+            udb.setType(request.getParameter("type"));
+            udb.setTell(request.getParameter("tell"));
+            udb.setComment(request.getParameter("comment"));
+            
+            
+            //ユーザー情報群をセッションに格納
+            session.setAttribute("udb", udb);
+            System.out.println("Session updated!!");
+            
+           
+            UserDataDTO searchData = (UserDataDTO)session.getAttribute("searchData");
+            //DTOオブジェクトにマッピング。DB専用のパラメータに変換
+            UserDataDTO newuserdata = new UserDataDTO();
+            udb.UD2DTOMapping(newuserdata);
+            
+            //DBへデータの挿入
+            UserDataDAO .getInstance().update(newuserdata,searchData);
+            
+            //成功したのでセッションの値を削除
+            session.invalidate();
+            
+            //結果画面での表示用に入力パラメータ―をリクエストパラメータとして保持
+            request.setAttribute("udb", udb);
+            
+            request.getRequestDispatcher("/updateresult.jsp").forward(request, response);
         }catch(Exception e){
             request.setAttribute("error", e.getMessage());
             request.getRequestDispatcher("/error.jsp").forward(request, response);

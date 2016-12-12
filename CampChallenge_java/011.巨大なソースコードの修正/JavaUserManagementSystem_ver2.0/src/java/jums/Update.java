@@ -40,26 +40,29 @@ public class Update extends HttpServlet {
             }
             
             
-            //Date型を一度insertと同じようにStringで処理したいと考えたが上手くいかず
-//            SimpleDateFormat sdfyear = new SimpleDateFormat("yyyy");
-//            String birthYear = sdfyear.format(request.getParameter("birthday"));
-
-//            SimpleDateFormat sdfmonth = new SimpleDateFormat("mm");
-//            String birthMonth = sdfmonth.format(request.getParameter("birthday"));
-
-//            SimpleDateFormat sdfday = new SimpleDateFormat("dd");
-//            String birthDay = sdfday.format(request.getParameter("birthday"));
-   
-            //フォームからの入力を取得して、JavaBeansに格納
             UserDataBeans udb = new UserDataBeans();
-            udb.setName(request.getParameter("name"));
-//            udb.setType(request.getParameter("type"));　　//insertと同じようにif文で分岐しようとしたが認識せずコメントアウト化
-            udb.setTell(request.getParameter("tell"));
-            udb.setComment(request.getParameter("comment"));
-//            udb.setYear(birthYear);　//String 型になっているはずなのだがcannotエラーが出る。
-//            udb.setMonth(birthMonth);
-//            udb.setDay(birthDay);
-//            
+            UserDataDTO udd = (UserDataDTO)session.getAttribute("resultData");
+            
+            SimpleDateFormat sdfyear = new SimpleDateFormat("yyyy");
+            String birthYear = sdfyear.format(udd.getBirthday());
+
+            SimpleDateFormat sdfmonth = new SimpleDateFormat("mm");
+            String birthMonth = sdfmonth.format(udd.getBirthday()) + 1;
+
+            SimpleDateFormat sdfday = new SimpleDateFormat("dd");
+            String birthDay = sdfday.format(udd.getBirthday());
+      
+            
+            
+            udb.setName(udd.getName());
+            udb.setType(String.valueOf(udd.getType()));
+            udb.setTell(udd.getTell());
+            udb.setComment(udd.getComment());
+            udb.setYear(birthYear);
+            udb.setMonth(birthMonth);
+            udb.setDay(birthDay);
+            
+         
 
             //ユーザー情報群をセッションに格納
             session.setAttribute("udb", udb);

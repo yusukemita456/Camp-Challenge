@@ -1,7 +1,6 @@
 package jums;
 
 import base.DBManager;
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.sql.PreparedStatement;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -9,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
+
 
 /**
  * ユーザー情報を格納するテーブルに対しての操作処理を包括する
@@ -94,6 +93,8 @@ public class UserDataDAO {
                 }
             }
             
+            flag = false;
+            flagnew = false;
             st =  con.prepareStatement(sql); //sql文
              if (!ud.getName().equals("")) {
                 st.setString(1, "%"+ud.getName()+"%"); //nameをsql文へ渡す処理
@@ -204,7 +205,7 @@ public class UserDataDAO {
         Connection con = null;
         PreparedStatement st = null;
         try{
-         String sql =  "update user_t set name=?,birthday=?,tell=?,type=?,comment=? where userID=?";
+         String sql =  "update user_t set name=?,birthday=?,tell=?,type=?,comment=?,newDate =? where userID=?";
             
             con = DBManager.getConnection();
             st = con.prepareStatement(sql);
@@ -213,7 +214,8 @@ public class UserDataDAO {
             st.setString(3, udd.getTell());
             st.setInt(4, udd.getType());
             st.setString(5, udd.getComment());
-            st.setInt(6, id.getUserID());
+            st.setTimestamp(6, new Timestamp(System.currentTimeMillis()));
+            st.setInt(7, id.getUserID());
             st.executeUpdate();
             
         }catch(SQLException e){
@@ -229,14 +231,14 @@ public class UserDataDAO {
      /**
      * ユーザーIDによる1件のデータの削除を行う。
      */
-    public void delete(int id) throws SQLException{
+    public void delete(UserDataDTO udd) throws SQLException{
         Connection con = null;
         PreparedStatement st = null;
         try{
             String sql = "delete from user_t where userID = ?";
             con = DBManager.getConnection();
             st = con.prepareStatement(sql);
-           st.setInt(1,id);
+           st.setInt(1,udd.getUserID());
             st.executeUpdate();
             
         }catch(SQLException e){

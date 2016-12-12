@@ -17,7 +17,9 @@
     <body>
          <form action="SearchResult" method="GET"> <%-- get --%>
         <h1>JUMSユーザー情報検索画面</h1>
-        <h3>以下の項目を入力してください</h3><br>     
+        <h3>以下の項目を入力してください</h3><br>
+        <h5>※何も入れてない場合全検索を行います。</h5><br>
+        
         名前:
         <input type="text" name="name">
         <br><br>

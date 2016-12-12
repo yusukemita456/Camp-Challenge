@@ -17,6 +17,16 @@ public class UserDataBeans implements Serializable{
     private String tell;
     private int type ;
     private String comment;
+    private int UserID;
+
+    public int getUserID() {
+        return UserID;
+    }
+
+    public void setUserID(int UserID) {
+        this.UserID = UserID;
+    }
+    
     
     public UserDataBeans(){
         this.name = "";
@@ -26,6 +36,7 @@ public class UserDataBeans implements Serializable{
         this.tell = "";
         this.type = 0;
         this.comment= "";
+        this.UserID = 0;
     }
     
     public String getName() {

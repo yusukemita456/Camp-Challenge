@@ -2,6 +2,7 @@ package jums;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -30,21 +31,7 @@ public class Delete extends HttpServlet {
         try{
             request.setCharacterEncoding("UTF-8");//リクエストパラメータの文字コードをUTF-8に変更
             
-            
-            
-            UserDataBeans udb = new UserDataBeans();
-            udb.setName(request.getParameter("name"));
-            udb.setYear(request.getParameter("year"));
-            udb.setMonth(request.getParameter("month"));
-            udb.setDay(request.getParameter("day"));
-            udb.setType(request.getParameter("type"));
-            udb.setTell(request.getParameter("tell"));
-            udb.setComment(request.getParameter("comment"));
-
-            //ユーザー情報群をセッションに格納
-            session.setAttribute("udb", udb);
-            System.out.println("Session updated!!");
-            
+   
             request.getRequestDispatcher("/delete.jsp").forward(request, response);
         }catch(Exception e){
             request.setAttribute("error", e.getMessage());

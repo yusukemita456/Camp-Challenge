@@ -35,11 +35,12 @@ public class ResultDetail extends HttpServlet {
             UserDataDTO searchData = new UserDataDTO();
             int id = Integer.parseInt(request.getParameter("id"));
             searchData.setUserID(id);
+            session.setAttribute("searchData", searchData);//session
             
             UserDataDTO resultData = UserDataDAO .getInstance().searchByID(searchData);
-            request.setAttribute("resultData", resultData);
+            session.setAttribute("resultData", resultData);//session
             
-            session.setAttribute("id", resultData);
+           
             
             request.getRequestDispatcher("/resultdetail.jsp").forward(request, response);  
         }catch(Exception e){

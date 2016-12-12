@@ -25,9 +25,9 @@
                 <th>種別</th>
                 <th>登録日時</th>
             </tr>
-            <tr>
+            
                 <% for(int i = 0;i < udd.size();i++){ %> <%-- 検索結果をarrylistの中身分繰返す --%>
-                
+            <tr>   
                 <td><a href="ResultDetail?id=<%= udd.get(i).getUserID()%>"><%= udd.get(i).getName()%></a></td>
                 <td><%= udd.get(i).getBirthday()%></td>
                 <td><%= jh.exTypenum(udd.get(i).getType())%></td>
